@@ -1,0 +1,3 @@
+yarn typeorm migration:create -n CreateaDevice
+
+yarn typeorm migration:create -n CreateAmbience
