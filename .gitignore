@@ -1,2 +1,6 @@
 node_modules
 ormconfig.json
+comandosmigration.txt
+dist
+.vscode
+bam.yml

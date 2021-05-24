@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, getCustomRepository } from 'typeorm';
 
 import DeviceData from '../models/DeviceData';
 import CreateDeviceDataService from '../services/CreateDeviceDataService';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import DevicesDataRepository from '../repositories/DevicesDataRepository';
 
 const devicesDataRouter = Router();
 
@@ -12,7 +13,14 @@ const devicesDataRouter = Router();
 
 devicesDataRouter.get('/', async (request, response) => {
   const devicesDataRepository = getRepository(DeviceData);
-  const devicesData = await devicesDataRepository.find();
+  const devicesData = await devicesDataRepository.find({ order: { created_at: "DESC" }});
+
+  return response.json(devicesData);
+});
+
+devicesDataRouter.get('/averageTemperature', async (request, response) => {
+  const devicesDataRepository = getCustomRepository(DevicesDataRepository);
+  const devicesData = await devicesDataRepository.temperatureAverage();
 
   return response.json(devicesData);
 });

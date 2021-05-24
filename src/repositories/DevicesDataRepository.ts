@@ -11,6 +11,12 @@ class DevicesDataRepository extends Repository<DeviceData> {
 
     return findDeviceData || null;
   }
+
+  public async temperatureAverage(): Promise<DeviceData | null> {
+    const findDeviceData = await this.findOne({ order: { created_at: "DESC" } });
+
+    return findDeviceData || null;
+  }
 }
 
 export default DevicesDataRepository;
