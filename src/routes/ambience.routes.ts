@@ -1,20 +1,28 @@
 import { Router } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, getCustomRepository } from 'typeorm';
 
 import Ambience from '../models/Ambience';
 import CreateAmbienceService from '../services/CreateAmbienceService';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import AmbienceRepository from '../repositories/AmbienceRepository';
 
 const ambienceRouter = Router();
 
 //devicesRouter.use(ensureAuthenticated);
 
 ambienceRouter.get('/', async (request, response) => {
-  const ambienceRepository = getRepository(Ambience);
+  const ambienceRepository = getRepository(AmbienceRepository);
   const ambience = await ambienceRepository.find();
 
   return response.json(ambience);
+});
+
+ambienceRouter.get('/ParamsOfAmbience', async (request, response) => {
+  const ambienceRepository = getCustomRepository(AmbienceRepository);
+  const periodAmbience = await ambienceRepository.paramsOfAmbience();
+
+  return response.json(periodAmbience);
 });
 
 ambienceRouter.post('/', async (request, response) => {
