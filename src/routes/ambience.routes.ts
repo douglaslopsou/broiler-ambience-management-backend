@@ -12,7 +12,7 @@ const ambienceRouter = Router();
 //devicesRouter.use(ensureAuthenticated);
 
 ambienceRouter.get('/', async (request, response) => {
-  const ambienceRepository = getRepository(AmbienceRepository);
+  const ambienceRepository = getCustomRepository(AmbienceRepository);
   const ambience = await ambienceRepository.find();
 
   return response.json(ambience);

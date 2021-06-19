@@ -34,9 +34,9 @@ class CreateAmbienceService {
       ambienceDateEnd,
     );
 
-    if (findAmbienceInSameDate?.length > 0) {
-      throw new AppError('This ambience already configured');
-    }
+    // if (findAmbienceInSameDate?.length > 0) {
+    //   throw new AppError('This ambience already configured');
+    // }
 
     const ambience = ambienceRepository.create({
       title,

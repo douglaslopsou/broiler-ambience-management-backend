@@ -12,7 +12,7 @@ const logsRouter = Router();
 
 logsRouter.get('/', async (request, response) => {
   const logsRepository = getRepository(Log);
-  const logs = await logsRepository.find();
+  const logs = await logsRepository.find({ order: { created_at: "DESC" }});
 
   return response.json(logs);
 });
