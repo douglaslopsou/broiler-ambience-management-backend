@@ -1,4 +1,3 @@
-import { uuid } from 'uuidv4';
 import {
   Entity,
   Column,
@@ -6,6 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { uuid } from 'uuidv4';
 
 @Entity('ambience')
 class Ambience {
