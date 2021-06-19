@@ -1,0 +1,23 @@
+{
+  "type": "postgres",
+  "host": "db-postgresql-nyc1-47335-do-user-9406024-0.b.db.ondigitalocean.com",
+  "port": 25060,
+  "username": "doadmin",
+  "password": "utvhi9sdzztjp6wu",
+  "database": "broiler_ambience_management",
+  "ssl": true,
+  "extra": {
+    "ssl": {
+      "rejectUnauthorized": false
+    }
+  },
+  "entities": [
+    "./src/models/*.ts"
+  ],
+  "migrations": [
+    "./src/database/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
+}
