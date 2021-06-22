@@ -25,6 +25,13 @@ ambienceRouter.get('/ParamsOfAmbience', async (request, response) => {
   return response.json(periodAmbience);
 });
 
+ambienceRouter.get('/graphValues', async (request, response) => {
+  const ambienceRepository = getCustomRepository(AmbienceRepository);
+  const graphValues = await ambienceRepository.graphValues();
+
+  return response.json(graphValues);
+});
+
 ambienceRouter.post('/', async (request, response) => {
   const { title, start_at, end_at, temperature, umidity } = request.body;
 

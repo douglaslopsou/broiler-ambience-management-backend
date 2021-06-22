@@ -25,6 +25,20 @@ devicesDataRouter.get('/averageTemperature', async (request, response) => {
   return response.json(devicesData);
 });
 
+devicesDataRouter.get('/lastTemperatures', async (request, response) => {
+  const devicesDataRepository = getCustomRepository(DevicesDataRepository);
+  const devicesData = await devicesDataRepository.lastTemperatures();
+
+  return response.json(devicesData);
+});
+
+devicesDataRouter.get('/lastUmidity', async (request, response) => {
+  const devicesDataRepository = getCustomRepository(DevicesDataRepository);
+  const devicesData = await devicesDataRepository.lastUmidity();
+
+  return response.json(devicesData);
+});
+
 devicesDataRouter.post('/', async (request, response) => {
   const { device_id, temperature, umidity} = request.body;
 
