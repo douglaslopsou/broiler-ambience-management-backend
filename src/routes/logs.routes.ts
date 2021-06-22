@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getRepository } from 'typeorm';
+import { getRepository, Like } from 'typeorm';
 
 import Log from '../models/Log';
 import CreateLogService from '../services/CreateLogService';
@@ -13,6 +13,20 @@ const logsRouter = Router();
 logsRouter.get('/', async (request, response) => {
   const logsRepository = getRepository(Log);
   const logs = await logsRepository.find({ order: { created_at: "DESC" }});
+
+  return response.json(logs);
+});
+
+logsRouter.get('/logController', async (request, response) => {
+  const logsRepository = getRepository(Log);
+  const logs = await logsRepository.findOne({ 
+    description: Like('%vel%'),
+    type_log: "BAM-Controller",
+  },
+  {
+    order: { created_at: "DESC" }
+  }
+  );
 
   return response.json(logs);
 });
